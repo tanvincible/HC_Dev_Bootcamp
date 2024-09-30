@@ -12,7 +12,7 @@ Making.....
 - On clicking Sign in with email button redireted to [http://localhost:3000/student]() page, accomplished by making a folder named student in the app directory which contains a unique page.tsx file.
 - Also added main-nav.tsx for the navigation bar and added example links to show navigation to youtube or anyw ebsite of choice(Try clicking the navigation bar :D)
 
-## Login Page
+## Registeration Page
 
 - currently no authentication happening will be added later.
 
@@ -29,7 +29,8 @@ Making.....
 
 - In the mode-toggle.tsx and theme-provider.tsx file.
 
-##
+## Login Page
+- Enter email and Password to Enter
 
 ## Learn More
 

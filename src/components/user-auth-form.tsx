@@ -41,13 +41,13 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
               disabled={isLoading}
             />
           </div>
-          <Link href="student">
+          <Link href="/">
             <div className="w-full flex justify-center">
               <Button disabled={isLoading} className="w-full">
                 {isLoading && (
                   <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
                 )}
-                Sign In with Email
+                Register
               </Button>
             </div>
           </Link>
