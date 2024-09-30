@@ -1,6 +1,9 @@
-import Link from "next/link"
+"use client";
 
+import Link from "next/link"
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
+import { useRouter } from "next/navigation";
 import {
     Card,
     CardContent,
@@ -12,6 +15,31 @@ import { Input } from "@/components/ui/input";
 import { Label  } from "@/components/ui/label";
 
 export function LoginForm() {
+
+    const router = useRouter();
+
+    // State to hold email and password
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    // Handler for the Login button click
+    const handleLogin = (e: React.MouseEvent) => {
+        e.preventDefault();
+
+        // Check if email and password match the required values
+        if (email === "abcd" && password === "123") {
+            router.push("/student"); // Redirect to /students page if the condition is met
+        } else {
+            alert("Invalid credentials"); // Show an alert if the credentials are incorrect
+        }
+    };
+
+    // Handler for Google Login (optional behavior)
+    const handleGoogleLogin = (e: React.MouseEvent) => {
+        e.preventDefault();
+        router.push("/"); // This behavior stays the same for Google login
+    };
+
     return (
         <Card className="mx-auto max-w-sm">
             <CardHeader>
@@ -28,6 +56,8 @@ export function LoginForm() {
                             id="email"
                             type="email"
                             placeholder="m@example.com"
+                            value={email} // Bind email input to state
+                            onChange={(e) => setEmail(e.target.value)}
                             required
                         />
                     </div>
@@ -38,12 +68,12 @@ export function LoginForm() {
                                 Forgot your password?
                             </Link>
                         </div>
-                        <Input id="password" type="password" required />
+                        <Input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
                     </div>
-                    <Button type="submit" className="w-full">
+                    <Button type="submit" className="w-full" onClick={handleLogin}>
                         Login
                     </Button>
-                    <Button variant="outline" className="w-full">
+                    <Button variant="outline" className="w-full" onClick={handleGoogleLogin}>
                         Login with Google
                     </Button>
                 </div>
