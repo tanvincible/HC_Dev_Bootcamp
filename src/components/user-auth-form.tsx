@@ -3,6 +3,7 @@
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 import { Icons } from "@/components/icons";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
@@ -40,12 +41,16 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
               disabled={isLoading}
             />
           </div>
-          <Button disabled={isLoading}>
-            {isLoading && (
-              <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-            )}
-            Sign In with Email
-          </Button>
+          <Link href="student">
+            <div className="w-full flex justify-center">
+              <Button disabled={isLoading} className="w-full">
+                {isLoading && (
+                  <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+                )}
+                Sign In with Email
+              </Button>
+            </div>
+          </Link>
         </div>
       </form>
       <div className="relative">
