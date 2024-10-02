@@ -27,9 +27,13 @@ export function LoginForm() {
         e.preventDefault();
 
         // Check if email and password match the required values
-        if (email === "abcd" && password === "123") {
+        if (email === "student" && password === "123") {
             router.push("/student"); // Redirect to /students page if the condition is met
-        } else {
+        }
+        else if(email === "doctor" && password === "456"){
+            router.push("/doctor");
+        }
+        else {
             alert("Invalid credentials"); // Show an alert if the credentials are incorrect
         }
     };

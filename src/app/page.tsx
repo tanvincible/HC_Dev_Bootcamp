@@ -24,7 +24,6 @@ export default function AuthenticationPage() {
                 alt="Authentication"
                 className="block dark:hidden"
             />
-
             <Image
                 src="/examples/authentication-dark.png"
                 width={1280}
@@ -33,7 +32,6 @@ export default function AuthenticationPage() {
                 className="hidden dark:block"
             />
           </div>
-
           <div className="container relative hidden h-[1050px] flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
             <Link
                 href="/register"
