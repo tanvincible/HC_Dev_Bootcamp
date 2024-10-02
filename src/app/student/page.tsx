@@ -1,4 +1,4 @@
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/mode-toggle";
 import { SiteFooter } from "@/components/ui/sitefooter";
 import { SiteHeader } from "@/components/ui/siteheader";
