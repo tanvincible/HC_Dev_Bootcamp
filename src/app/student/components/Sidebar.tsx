@@ -5,18 +5,18 @@ import Link from 'next/link';
 
 export default function Sidebar() {
   return (
-    <div className="min-h-screen bg-white flex flex-col items-center w-64 p-6">
+    <div className="min-h-screen bg-white dark:bg-gray-800 flex flex-col items-center w-64 p-6">
       {/* Profile Section */}
-      <div className="flex flex-col text-black items-center mb-6">
+      <div className="flex flex-col text-black dark:text-white items-center mb-6">
         <Image
-          className="w-24 h-24 text-black rounded-full mb-4"
-          src="/image" // Replace with actual image path
+          className="w-14 h-14 text-black rounded-full mb-4"
+          src="/favicon.ico" // Replace with actual image path
           alt="Profile Image"
-          width={96}
-          height={96}
+          width={26}
+          height={26}
         />
-        <h2 className="text-lg font-bold text-blue-600">Student Name</h2>
-        <p className="text-sm text-black">Student Designation</p>
+        <h2 className="text-lg font-bold text-blue-600 dark:text-blue-400">Student Name</h2>
+        <p className="text-sm text-black dark:text-gray-300">Student Designation</p>
       </div>
 
       {/* Navigation Links */}
@@ -31,7 +31,7 @@ export default function Sidebar() {
             { name: 'Logout', icon: 'M6 18L18 6M6 6l12 12', href: '#' },
           ].map((link, index) => (
             <li key={index}>
-              <Link href={link.href} className="flex items-center text-black hover:text-blue-600 transition">
+              <Link href={link.href} className="flex items-center text-black dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition">
                 <svg
                   className="w-6 h-6 mr-2"
                   fill="none"

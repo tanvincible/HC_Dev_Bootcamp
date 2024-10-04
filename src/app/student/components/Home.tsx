@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Sidebar from '@/app/student/components/Sidebar';
-import Header from '@/app/student/components/Header';
+import { SiteHeader } from '@/components/ui/siteheader';
 import StatsCard from '@/app/student/components/StatsSection';
 import AppointmentForm from '@/app/student/components/AppointmentForm';
 import AppointmentList from '@/app/student/components/AppointmentList';
@@ -21,6 +21,7 @@ export default function Home() {
 
   const [showAllAppointments, setShowAllAppointments] = useState(false);
   const [isFormVisible, setIsFormVisible] = useState(false);
+
   // Function to handle appointment form submission
   const handleAppointmentSubmit = (data: { name: string; email: string; date: string; time: string }) => {
     const newAppointment = {
@@ -34,16 +35,16 @@ export default function Home() {
   };
 
   return (
-    <div className="flex bg-white">
+    <div className="flex bg-white dark:bg-gray-900">
       {/* Sidebar */}
-      <div className="shadow">
+      <div className="shadow dark:bg-gray-800">
         <Sidebar />
       </div>
 
       {/* Main Content */}
-      <div className="px-6 py-6 w-full">
-        <Header />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+      <div className="px-6 py-6 w-full text-black dark:text-white flex flex-col">
+        < SiteHeader />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6 mt-5">
           <StatsCard title="Total Booked Appointments" value={`${appointments.length}`} subtitle="Till Now" />
           <StatsCard title="Appointments Reports" value="3" subtitle="Till Now" />
           <StatsCard title="Upcoming Appointments" value={`${appointments.length - 3}`} subtitle="This Week" />
@@ -51,7 +52,7 @@ export default function Home() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Appointment Form */}
-          <div className="bg-white rounded-lg shadow">
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow">
             <AppointmentForm onSubmit={handleAppointmentSubmit} />
           </div>
 

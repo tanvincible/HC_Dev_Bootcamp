@@ -34,16 +34,16 @@ export default function AppointmentForm({ onSubmit }: { onSubmit: (data: FormDat
     },
   });
 
-  const [showAllAppointments, setShowAllAppointments] = useState(false);
+  // const [showAllAppointments, setShowAllAppointments] = useState(false);
   const [isFormVisible, setIsFormVisible] = useState(false);
   
   return (
-    <div className="bg-white p-5 rounded-lg">
+    <div className="bg-white dark:bg-gray-800 p-5 rounded-lg">
             {/* Form Section */}
-            <h2 className="text-lg font-semibold text-black mb-3 text-center">Book an Appointment</h2>
+            <h2 className="text-lg font-semibold text-black dark:text-white mb-3 text-center">Book an Appointment</h2>
             <Button 
               onClick={() => setIsFormVisible(!isFormVisible)}
-              className="w-full mb-4 text-white bg-blue-600 hover:bg-blue-700 transition"
+              className="w-full mb-4 text-white bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition"
             >
               {isFormVisible ? "Cancel the application" : "Show Application"}
             </Button>
@@ -57,7 +57,7 @@ export default function AppointmentForm({ onSubmit }: { onSubmit: (data: FormDat
                       <FormItem>
                         <FormLabel>Name</FormLabel>
                         <FormControl>
-                          <Input placeholder="Your Name" {...field} />
+                          <Input placeholder="Your Name" {...field} className="dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -70,7 +70,7 @@ export default function AppointmentForm({ onSubmit }: { onSubmit: (data: FormDat
                       <FormItem>
                         <FormLabel>Email</FormLabel>
                         <FormControl>
-                          <Input type="email" placeholder="example@example.com" {...field} />
+                          <Input type="email" placeholder="example@example.com" {...field} className="dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -83,7 +83,7 @@ export default function AppointmentForm({ onSubmit }: { onSubmit: (data: FormDat
                       <FormItem>
                         <FormLabel>Date</FormLabel>
                         <FormControl>
-                          <Input type="date" {...field} />
+                          <Input type="date" {...field} className="dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -96,13 +96,13 @@ export default function AppointmentForm({ onSubmit }: { onSubmit: (data: FormDat
                       <FormItem>
                         <FormLabel>Time</FormLabel>
                         <FormControl>
-                          <Input type="time" {...field} />
+                          <Input type="time" {...field} className="dark:bg-gray-700 dark:border-gray-600 dark:text-white"  />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
-                  <Button type="submit" className="bg-green-600 hover:bg-green-700 transition">
+                  <Button type="submit" className="bg-green-600 hover:bg-green-700 transition dark:bg-green-500 dark:hover:bg-green-600">
                     Submit
                   </Button>
                 </form>
