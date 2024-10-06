@@ -34,7 +34,6 @@ export default function AppointmentForm({ onSubmit }: { onSubmit: (data: FormDat
     },
   });
 
-  // const [showAllAppointments, setShowAllAppointments] = useState(false);
   const [isFormVisible, setIsFormVisible] = useState(false);
   
   return (

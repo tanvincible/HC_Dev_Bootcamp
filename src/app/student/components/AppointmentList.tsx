@@ -1,12 +1,3 @@
-"use client";
-
-type Appointment = {
-  id: number;
-  name: string;
-  reason: string;
-  time: string;
-};
-
 export default function AppointmentList({
   appointments,
   showAllAppointments,
@@ -18,7 +9,7 @@ export default function AppointmentList({
 }) {
   return (
     <div className="bg-white dark:bg-gray-800 p-5 rounded-lg shadow">
-      <h2 className="text-lg text-black dark:text-white font-semibold mb-3">Today's Appointments</h2>
+      <h2 className="text-lg text-black dark:text-white font-semibold mb-3">Past Appointments</h2>
       <ul>
         {appointments.slice(0, showAllAppointments ? appointments.length : 3).map(appointment => (
           <li key={appointment.id} className="flex text-black justify-between items-center mb-3">
