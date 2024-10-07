@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import {
     Form,
     FormControl,
@@ -33,7 +33,7 @@ export function ProfileForm() {
         window.location.href = `/doctor/${values.id}`;
         console.log(values);
     }
-    const router = useRouter();
+    // const router = useRouter();
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
