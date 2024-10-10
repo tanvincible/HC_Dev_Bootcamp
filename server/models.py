@@ -1,11 +1,6 @@
+import datetime
 from typing import Optional
-from pydantic import BaseModel, ConfigDict, EmailStr, Field
-from pydantic.functional_validators import BeforeValidator
-from typing_extensions import Annotated
-
-# Represents an ObjectId field in the database.
-# It will be represented as a `str` on the model so that it can be serialized to JSON.
-PyObjectId = Annotated[str, BeforeValidator(str)]
+from pydantic import BaseModel, ConfigDict, EmailStr
 
 class Profile(BaseModel):
     """
@@ -19,18 +14,22 @@ class Profile(BaseModel):
     password: str
     role: str
 
+#  model for login request
+class LoginRequest(BaseModel):
+    id: str
+    password: str
+
 class Appointment(BaseModel):
     """
     Container for a single appointment record, every detail of the appointment, current satus, report and skribbl pad url.
     """
-    id: Optional[PyObjectId] = Field(alias="_id", default=None)
     patient_id: str
-    doctor_id: str
-    date: str
-    time: str
-    current_status: str
+    doctor_id: str = ""
+    datatime: datetime.datetime 
+    current_status: str = 'R'
+    previous_status:list = []
     description: str
-    skribbl_pad_url: str
+    skribbl_pad_url: str = ""
     report_url: list = []
     model_config = ConfigDict(
         # This setting allows fields to be populated using their alias (_id in this case) or their actual field name (id). 
@@ -41,8 +40,14 @@ class Appointment(BaseModel):
         arbitrary_types_allowed=True,
     )
     
-#  model for login request
-class LoginRequest(BaseModel):
-    id: str
-    password: str
-    
+# model for create appointment request
+class CreateAppointmentRequest(BaseModel):
+    date: str # Expected format: 'YYYY-MM-DD'
+    time: str # Expected format: 'HH:MM'
+    description: str
+
+# model for update appointment status request
+class UpdateStatusRequest(BaseModel):
+    status: str
+    description: str
+    doctor_id: Optional[str] = None
