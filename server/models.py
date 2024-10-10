@@ -29,7 +29,7 @@ class Appointment(BaseModel):
     current_status: str = 'R'
     previous_status:list = []
     description: str
-    skribbl_pad_url: str = ""
+    skribbl_pad_url: list = []
     report_url: list = []
     model_config = ConfigDict(
         # This setting allows fields to be populated using their alias (_id in this case) or their actual field name (id). 

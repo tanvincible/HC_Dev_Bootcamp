@@ -178,4 +178,70 @@ async def change_appointment_status(appointment_id: str ,update: UpdateStatusReq
         return {"message": "Appointment status updated"}
     raise HTTPException(status_code=400, detail="Failed to update appointment status")
     
+
+
+
+# need to implement the image upload to server
+
+# Add report to an appointment
+@app.post("/upload/{type}-{appointment_id}")
+async def upload_file(type: str, appointment_id: str, jwt_payload: dict = Depends(verify_jwt_token)):
+    # check role and file type
+    if  jwt_payload["role"] == "T" and type == "R":
+        #TODO: implement the report upload system
+        return {"message": "Upload report successful", "url": "https://example.com/report"}
+    if jwt_payload["role"] == "D" and type == "P":
+        #TODO: implement the prescription upload system
+        return {"message": "Upload prescription successful", "url": "https://example.com/prescription"}
     
+    raise HTTPException(status_code=403, detail="You are not authorized to upload file")
+
+
+# need to make the url a post body parm not the query param
+@app.put("/add-{type}-url/{appointment_id}")
+async def add_report_to_appointment(type: str, appointment_id: str, url: str, jwt_payload: dict = Depends(verify_jwt_token)):
+    push_query = {}
+    # check role and file type
+    if  jwt_payload["role"] == "T" and type == "R":
+        push_query["report_url"] = url
+    elif jwt_payload["role"] == "D" and type == "P":
+        push_query["prescription_url"] = url
+    
+    # Update the report url
+    updated_appointment = await appointment_collection.find_one_and_update(
+        {"_id": ObjectId(appointment_id)},
+        {"$push": push_query},
+    )
+    if updated_appointment:
+        return {"message": "Report added successfully"}
+    raise HTTPException(status_code=400, detail="Failed to added report")
+
+# Get all appointments
+@app.get("/appointments",
+         response_description="Get all appointments",
+         response_model=list[Appointment],
+         )
+async def get_all_appointments(jwt_payload: dict = Depends(verify_jwt_token)):
+    # Check if the user is authorized
+    if jwt_payload["role"] == "S":
+        appointments = await appointment_collection.find({"patient_id": jwt_payload["id"]})
+    elif jwt_payload["role"] == "D":
+        appointments = await appointment_collection.find({"doctor_id": jwt_payload["id"]})
+    elif jwt_payload["role"] == "T":
+        appointments = await appointment_collection.find({"current_status": "T"})
+    elif jwt_payload["role"] == "R":
+        appointments = await appointment_collection.find({"current_status": "R"})
+    elif jwt_payload["role"] == "P":
+        appointments = await appointment_collection.find({"current_status": "P"})
+    else:
+        raise HTTPException(status_code=403, detail="You are not authorized to view appointments")
+
+@app.get("/get-patient-details/{patient_id}")
+async def get_patient_details(patient_id: str, jwt_payload: dict = Depends(verify_jwt_token)):
+    # Check if the user is authorized
+    if jwt_payload["role"] != "S" or jwt_payload["id"] == patient_id:
+        patient = await profile_collection.find_one({"id": patient_id})
+        if not patient:
+            raise HTTPException(status_code=404, detail="Patient not found")
+        appointments = await appointment_collection.find({"patient_id": patient_id})
+        return {"patient": patient, "appointments": appointments}
