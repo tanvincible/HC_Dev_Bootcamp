@@ -1,3 +1,5 @@
+import { Appointment } from "../../../lib/types";
+
 export default function AppointmentList({
   appointments,
   showAllAppointments,
