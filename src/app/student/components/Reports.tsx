@@ -1,6 +1,18 @@
 import React from 'react';
 
-export default function Reports({ Reportdata }) {
+interface Report {
+  id: number;
+  name: string;
+  type: string;
+  docName: string;
+  date: string;
+}
+
+interface ReportsProps {
+  Reportdata: Report[];
+}
+
+export default function Reports({ Reportdata }: ReportsProps) {
   return (
     <div>
       <h2 className="text-xl font-semibold mb-4">Reports</h2>

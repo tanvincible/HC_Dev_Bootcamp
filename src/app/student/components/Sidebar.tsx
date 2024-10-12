@@ -3,7 +3,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-export default function Sidebar({ onSelect }) {
+interface SidebarProps {
+  onSelect: (name: string) => void;
+}
+
+export default function Sidebar({ onSelect }: SidebarProps) {
   const links = [
     { name: 'Dashboard', icon: 'M3 3h18M9 3v12M15 3v12M3 15h18', href: '/student' },
     { name: 'Booked Appointment', icon: 'M3 12l9-9 9 9m-9 9v-6m0-6v6', href: '#' },
