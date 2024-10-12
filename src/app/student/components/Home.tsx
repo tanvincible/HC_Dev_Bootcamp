@@ -30,7 +30,7 @@ export default function Home() {
 
   const [showAllAppointments, setShowAllAppointments] = useState(false);
 
-  const handleAppointmentSubmit = (data) => {
+  const handleAppointmentSubmit = (data: { name: any; time: any; }) => {
     const newAppointment = {
       id: appointments.length + 1,
       name: data.name,
