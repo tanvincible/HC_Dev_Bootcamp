@@ -23,7 +23,7 @@ import {
   Search,
 } from "lucide-react";
 
-export default function DoctorPage() {
+export function DoctorPage() {
   return (
     <div className="flex flex-row w-full">
       <SideDrawer />
