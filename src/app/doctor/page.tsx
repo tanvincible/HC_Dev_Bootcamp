@@ -19,7 +19,6 @@ import {
   MessageSquare,
   ShoppingCart,
   Tag,
-  Icon,
   Search,
 } from "lucide-react";
 
