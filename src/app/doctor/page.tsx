@@ -1,4 +1,4 @@
-'use client'
+"use client";
 // to add onclick to input
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -21,6 +21,7 @@ import {
   Tag,
   Search,
 } from "lucide-react";
+import { ProfileForm } from "./form";
 
 export default function DoctorPage() {
   return (
@@ -29,6 +30,14 @@ export default function DoctorPage() {
       {/* TODO: Make the title and the search bar responsive */}
       <div className="w-full flex flex-row p-4 justify-between">
         <h1 className="text-4xl font-bold m-2 inline">Dashboard</h1>
+        {/* ProfileForm component in the middle of the page */}
+        <div className="relative flex min-h-screen flex-col justify-center overflow-hidden py-6 sm:py-12">
+          <div className="relative px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-500/45 sm:mx-auto sm:max-w-lg sm:rounded-lg sm:px-10">
+            <div className="flex space-x-4">
+              <ProfileForm />
+            </div>
+          </div>
+        </div>
         <div className="p-0 flex flex-row h-fit group cursor-pointe">
           {/* TODO: correct the input tag  */}
           <Search className="h-10 align-middle"></Search>
